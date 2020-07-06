@@ -52,8 +52,8 @@ class ImagePostViewController: UIViewController {
     private func defaultValues() {
         vibranceSlider.value = 0
         exposureSlider.value = 0
-        distortionSlider.value = 300 // idk
-        kaleidoscopeSlider.value = 6 // idk
+        distortionSlider.value = 0 // idk
+        kaleidoscopeSlider.value = 0 // idk
         hueSlider.value = 0
     }
     
@@ -107,6 +107,12 @@ class ImagePostViewController: UIViewController {
     }
     
     // MARK: - ACTIONS
+    
+    //Choose Photo
+    @IBAction func choosePhotoButtonPressed(_ sender: Any) {
+        presentImagePicker()
+    }
+    //Save button tapped action
     @IBAction func savePhotoButtonPressed(_ sender: UIButton) {
         guard let orginalImage = orginalImage else { return }
         
@@ -179,7 +185,6 @@ class ImagePostViewController: UIViewController {
     }
     
         func presentImagePicker() {
-            
             // Make sure the photo library is available to use in the first place
             guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
                 NSLog("The photo library is not available")

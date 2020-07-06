@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>321972568255-nrgbujol2pnail4ek5lb9biktsd36mt4.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.321972568255-nrgbujol2pnail4ek5lb9biktsd36mt4</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCWzDa8aI2ytb5uywO23jVGABNQgsIm2sg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>321972568255</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.nonyeezekwo.Timeline</string>
+	<key>PROJECT_ID</key>
+	<string>nonyes-timeline</string>
+	<key>STORAGE_BUCKET</key>
+	<string>nonyes-timeline.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:321972568255:ios:2f3a0c15deaf6f33e6860a</string>
+	<key>DATABASE_URL</key>
+	<string>https://nonyes-timeline.firebaseio.com</string>
+</dict>
+</plist>
