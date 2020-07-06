@@ -22,7 +22,6 @@ class ImagePostViewController: UIViewController {
         case distortInputScale = "inputScale"
         case kaleidoInputCount = "inputCount"
         case inputAngle = "inputAngle"
-     
     }
     
     // MARK: - OUTLETS
@@ -45,8 +44,17 @@ class ImagePostViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        defaultValues()
         orginalImage = imageView.image
+    }
+    
+    //Slider Defaults
+    private func defaultValues() {
+        vibranceSlider.value = 0
+        exposureSlider.value = 0
+        distortionSlider.value = 300 // idk
+        kaleidoscopeSlider.value = 6 // idk
+        hueSlider.value = 0
     }
     
     private var orginalImage: UIImage? {
@@ -63,11 +71,11 @@ class ImagePostViewController: UIViewController {
     
     private var scaledImage: UIImage? {
         didSet {
-            updateViews()
+            updateImage()
         }
     }
     
-    private func updateViews() {
+    private func updateImage() {
         if let scaledImage = scaledImage {
             imageView.image = filterImage(_: scaledImage)
         } else {
@@ -78,23 +86,88 @@ class ImagePostViewController: UIViewController {
     
     
     // MARK: - ACTIONS FOR SLIDERS
+    @IBAction func vibranceChanged(_ sender: UISlider) {
+        updateImage()
+    }
+    
+    @IBAction func exposureChanged(_ sender: UISlider) {
+        updateImage()
+    }
+    
+    @IBAction func distortionChanged(_ sender: UISlider) {
+        updateImage()
+    }
+    
+    @IBAction func kaleidoscopeChanged(_ sender: UISlider) {
+        updateImage()
+    }
+    
+    @IBAction func hueChanged(_ sender: UISlider) {
+        updateImage()
+    }
     
     // MARK: - ACTIONS
-
+    @IBAction func savePhotoButtonPressed(_ sender: UIButton) {
+        guard let orginalImage = orginalImage else { return }
+        
+        let filteredImage = filterImage(orginalImage)
+        
+        PHPhotoLibrary.requestAuthorization { (status) in
     
-    private func filterImage(_ image: UIImage) -> UIImage? {
+            guard status == .authorized else {
+                NSLog("The user has not authorized permission for Photo Library Usage")
+
+                return
+            }
+            
+            PHPhotoLibrary.shared().performChanges({
+
+                PHAssetCreationRequest.creationRequestForAsset(from: filteredImage)
+                
+            }) { (success, error) in
+                if let error = error {
+                    NSLog("Error saving photo asset: \(error)")
+                    return
+                }
+
+                //Present an alert to the user saying that the image was unable to be saved
+            }
+        }
+    }
+    
+    private func filterImage(_ image: UIImage) -> UIImage {
+        
         //UIImage -> CGImage -> CIImage "recipe"
         
-        guard let cgImage = image.cgImage else { return nil }
+        guard let cgImage = image.cgImage else { return image }
+        
         let ciImage = CIImage(cgImage: cgImage)
         let filter = CIFilter.colorControls()
         
         //Vibrance Filter
+        vibranceFilter?.setValue(vibranceSlider.value, forKey: filterKey.vibrance.rawValue)
+        guard let vibranceCIImage = vibranceFilter?.outputImage else { return image }
         
         //Exposure Filter
+        exposureFilter?.setValue(exposureSlider.value, forKey: filterKey.exposure.rawValue)
+        guard let exposureCIImage = exposureFilter?.outputImage else { return image }
         
+        //Distortion Filter
+        distortionFilter?.setValue(distortionSlider.value, forKey: filterKey.distortInputScale.rawValue)
+        distortionFilter?.setValue(distortionSlider.value, forKey: filterKey.distortInputRadius.rawValue)
+        distortionFilter?.setValue(distortionSlider.value, forKey: filterKey.inputCenter.rawValue)
+        guard let distortionCIImage = distortionFilter?.outputImage else { return image }
         
-        //
+        //Kaleidoscope Filter
+        kaleidoscopeFilter?.setValue(kaleidoscopeSlider.value, forKey: filterKey.kaleidoInputCount.rawValue)
+        kaleidoscopeFilter?.setValue(kaleidoscopeSlider.value, forKey: filterKey.inputCenter.rawValue)
+        kaleidoscopeFilter?.setValue(kaleidoscopeSlider.value, forKey: filterKey.inputAngle.rawValue)
+        guard let kaleidoscopeCIImage = kaleidoscopeFilter?.outputImage else { return image }
+        
+        //Hue Filter
+        hueFilter?.setValue(hueSlider.value, forKey: filterKey.inputAngle.rawValue)
+        guard let hueCIImage = hueFilter?.outputImage else { return image }
+        
         guard let outputImage = filter.outputImage else {
             return image
         }
