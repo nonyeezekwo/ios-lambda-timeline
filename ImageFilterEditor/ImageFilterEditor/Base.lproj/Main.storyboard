@@ -131,7 +131,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="PRl-W6-d5c"/>
+                    <navigationItem key="navigationItem" id="PRl-W6-d5c">
+                        <barButtonItem key="rightBarButtonItem" title="Choose Image" id="1o1-B1-OsA">
+                            <connections>
+                                <action selector="choosePhotoButtonPressed:" destination="BYZ-38-t0r" id="IJL-rl-Gq7"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="distortionSlider" destination="hbE-E9-ZgF" id="Kf7-2g-8DF"/>
                         <outlet property="exposureSlider" destination="egI-cC-G1R" id="vHt-tl-wC9"/>

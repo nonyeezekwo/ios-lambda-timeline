@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Allows you to save edited photo to personal library</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -23,7 +25,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>Copy-paste-your-REVERSED_CLIENT_ID-from-GoogleService-Info.plist</string>
+				<string>com.googleusercontent.apps.321972568255-nrgbujol2pnail4ek5lb9biktsd36mt4</string>
 			</array>
 		</dict>
 	</array>
