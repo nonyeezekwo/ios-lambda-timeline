@@ -31,6 +31,8 @@
 		46D571F82173FC2700E7FF73 /* ImagePostDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D571F72173FC2700E7FF73 /* ImagePostDetailTableViewController.swift */; };
 		B4DB468324B3CAC800CF0574 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4DB468224B3CAC800CF0574 /* GoogleService-Info.plist */; };
 		B4DB468B24B3E19800CF0574 /* UIImage+Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DB468A24B3E19800CF0574 /* UIImage+Scale.swift */; };
+		B4DB46AF24B51D8C00CF0574 /* AudioVisualizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DB46AE24B51D8C00CF0574 /* AudioVisualizer.swift */; };
+		B4DB46B124B5244F00CF0574 /* AudioRecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DB46B024B5244F00CF0574 /* AudioRecorderViewController.swift */; };
 		E453457955DF907FCBD117F1 /* Pods_LambdaTimeline.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA39CACB677861CF84322FB5 /* Pods_LambdaTimeline.framework */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +66,8 @@
 		AA39CACB677861CF84322FB5 /* Pods_LambdaTimeline.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LambdaTimeline.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4DB468224B3CAC800CF0574 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B4DB468A24B3E19800CF0574 /* UIImage+Scale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Scale.swift"; sourceTree = "<group>"; };
+		B4DB46AE24B51D8C00CF0574 /* AudioVisualizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioVisualizer.swift; sourceTree = "<group>"; };
+		B4DB46B024B5244F00CF0574 /* AudioRecorderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AudioRecorderViewController.swift; path = LambdaTimeline/Storyboards/AudioRecorderViewController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +164,7 @@
 		46A0366B21700F6100E7FF73 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B4DB46B024B5244F00CF0574 /* AudioRecorderViewController.swift */,
 				46A0366C2170158900E7FF73 /* SignInViewController.swift */,
 				46A0366921700F5100E7FF73 /* PostsCollectionViewController.swift */,
 				46CFE6F421707D0000E7FF73 /* ImagePostViewController.swift */,
@@ -173,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				46CFE7022171572600E7FF73 /* ImagePostCollectionViewCell.swift */,
+				B4DB46AE24B51D8C00CF0574 /* AudioVisualizer.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -359,9 +365,11 @@
 				46CFE6FD217154F500E7FF73 /* Networking.swift in Sources */,
 				46CFE6F521707D0000E7FF73 /* ImagePostViewController.swift in Sources */,
 				46CFE6FF2171556D00E7FF73 /* ConcurrentOperation.swift in Sources */,
+				B4DB46AF24B51D8C00CF0574 /* AudioVisualizer.swift in Sources */,
 				46463790216FFD1B00E7FF73 /* Post.swift in Sources */,
 				46CFE6F32170757F00E7FF73 /* User+DictionaryRepresentation.swift in Sources */,
 				46D571F32172D43B00E7FF73 /* Cache.swift in Sources */,
+				B4DB46B124B5244F00CF0574 /* AudioRecorderViewController.swift in Sources */,
 				46CFE7012171559500E7FF73 /* FetchMediaOperation.swift in Sources */,
 				46D571F82173FC2700E7FF73 /* ImagePostDetailTableViewController.swift in Sources */,
 				46CFE7032171572600E7FF73 /* ImagePostCollectionViewCell.swift in Sources */,
