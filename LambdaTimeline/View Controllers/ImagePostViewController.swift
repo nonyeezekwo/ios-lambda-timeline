@@ -45,7 +45,7 @@ class ImagePostViewController: ShiftableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         defaultValues()
-        setImageViewHeight(with: 1.0)
+//        setImageViewHeight(with: 1.0)
         
 //        updateViews()
         orginalImage = imageView.image
@@ -113,10 +113,10 @@ class ImagePostViewController: ShiftableViewController {
             updateImage()
         }
     }
-    //What we call to move slider
+    //What we call to move slider - THIS IS NOT WORKING
     private func updateImage() {
         if let scaledImage = scaledImage {
-            imageView.image = filterImage(_: scaledImage)
+            imageView.image = image(_: scaledImage)
         } else {
             imageView.image = nil
         }
@@ -166,7 +166,7 @@ class ImagePostViewController: ShiftableViewController {
         }
     }
     
-    private func filterImage(_ image: UIImage) -> UIImage {
+    private func image(_ image: UIImage) -> UIImage {
         
         //UIImage -> CGImage -> CIImage "recipe"
         
@@ -174,15 +174,24 @@ class ImagePostViewController: ShiftableViewController {
         
         let ciImage = CIImage(cgImage: cgImage)
         let filter = CIFilter.colorControls()
+        filter.inputImage = ciImage
         
         //Vibrance Filter
-        vibranceFilter?.setValue(vibranceSlider.value, forKey: filterKey.vibrance.rawValue)
-        guard let vibranceCIImage = vibranceFilter?.outputImage else { return image }
+        filter.inputImage = ciImage
+        let filter2 = CIFilter(name: "CIColorControls")!
+        filter2.setValue(ciImage, forKey: "inputImage")
+        filter2.setValue(vibranceSlider.value, forKey: "inputAmount")
+    
+//        vibranceFilter?.setValue(vibranceSlider.value, forKey: "inputAmount")
+//        vibranceFilter?.setValue(vibranceSlider.value, forKey: filterKey.vibrance.rawValue)
+//        guard let vibranceCIImage = vibranceFilter?.outputImage else { return image }
+
         
         //Exposure Filter
         exposureFilter?.setValue(exposureSlider.value, forKey: filterKey.exposure.rawValue)
         guard let exposureCIImage = exposureFilter?.outputImage else { return image }
         
+        //REDO THIS ONE TO SOMETHING WITHOUT CIVECTOR, MAYBE BLUR?
         //Distortion Filter
         distortionFilter?.setValue(distortionSlider.value, forKey: filterKey.distortInputScale.rawValue)
         distortionFilter?.setValue(distortionSlider.value, forKey: filterKey.distortInputRadius.rawValue)
@@ -190,7 +199,7 @@ class ImagePostViewController: ShiftableViewController {
 //        distortionFilter?.setValue(distortionSlider.value, forKey: filterKey.inputCenter.rawValue)
         guard let distortionCIImage = distortionFilter?.outputImage else { return image }
         
-        //Kaleidoscope Filter
+        //Kaleidoscope Filter - CHANGE FILTER.
         kaleidoscopeFilter?.setValue(kaleidoscopeSlider.value, forKey: filterKey.kaleidoInputCount.rawValue)
         kaleidoscopeFilter?.setValue(kaleidoscopeSlider.value, forKey: filterKey.inputCenter.rawValue)
         kaleidoscopeFilter?.setValue(kaleidoscopeSlider.value, forKey: filterKey.inputAngle.rawValue)
@@ -228,7 +237,7 @@ class ImagePostViewController: ShiftableViewController {
     @IBAction func savePhotoButtonPressed(_ sender: UIButton) {
         guard let orginalImage = orginalImage else { return }
         
-        let filteredImage = filterImage(orginalImage)
+        let filteredImage = image(orginalImage)
         
         PHPhotoLibrary.requestAuthorization { (status) in
             
